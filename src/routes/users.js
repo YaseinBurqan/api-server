@@ -31,7 +31,7 @@ async function updateUser(req, res) {
   let updateUser = req.body;
   let foundUser = await userCollection.updateRecord({ where: { id: userId } });
   if (foundUser) {
-    let updatedUser = await foundUser.update(updateFood);
+    let updatedUser = await foundUser.update(updateUser);
     res.status(201).json(updatedUser);
   } else {
     res.status(404).json({ message: "User not found" });
