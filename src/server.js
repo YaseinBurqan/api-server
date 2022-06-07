@@ -11,9 +11,9 @@ const errorHandler = require("./error-handlers/500");
 
 const logger = require("./middleware/logger");
 
-const userRoutes = require("./routes/users");
 const foodRoutes = require("./routes/food");
 const clothesRoutes = require("./routes/clothes");
+const userRoutes = require("./routes/users");
 
 app.get("/", (req, res) => {
   res.status(200).send("server is working");
