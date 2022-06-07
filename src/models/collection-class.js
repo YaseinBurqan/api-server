@@ -22,13 +22,13 @@ class Collection {
         return await this.model.findAll();
       }
     } catch (e) {
-      console.error("error in reading record(s) for model: ", this.model.name);
+      console.error("error in reading record for model: ", this.model.name);
     }
   }
   async updateRecord(id, obj) {
     try {
-      let recordToUpdate = await this.model.findOne({ where: { id: id } });
-      return await recordToUpdate.update(obj);
+      let recordUpdate = await this.model.findOne({ where: { id: id } });
+      return await recordUpdate.update(obj);
     } catch (e) {
       console.error("error in updating record for model: ", this.model.name);
     }
