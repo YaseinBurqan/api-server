@@ -14,10 +14,10 @@ class Collection {
     }
   }
 
-  async readRecord(id) {
+  async readRecord(dataId) {
     try {
-      if (id) {
-        return await this.model.findOne({ where: { id: id } });
+      if (dataId) {
+        return await this.model.findOne({ where: { id: dataId } });
       } else {
         return await this.model.findAll();
       }
@@ -25,18 +25,22 @@ class Collection {
       console.error("error in reading record for model: ", this.model.name);
     }
   }
-  async updateRecord(id, obj) {
+  async updateRecord(obj) {
     try {
-      let recordUpdate = await this.model.findOne({ where: { id: id } });
-      return await recordUpdate.update(obj);
+      let updated = await record.update(obj);
+      return updated;
     } catch (e) {
-      console.error("error in updating record for model: ", this.model.name);
+      console.error("error in updating record in model ", this.model);
     }
   }
 
   async deleteRecord(id) {
+    if (!id) {
+      throw new Error("no id provided for model ", this.model);
+    }
     try {
-      return await this.model.destroy({ where: { id } });
+      let deleted = await this.model.destroy({ where: { id } });
+      return deleted;
     } catch (e) {
       console.error("error in deleting record for model: ", this.model.name);
     }

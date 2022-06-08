@@ -17,20 +17,20 @@ async function getFood(req, res) {
 
 async function getOneFood(req, res) {
   const foodId = parseInt(req.params.id);
-  let foodName = await foodCollection.findOne({ where: { id: foodId } });
+  let foodName = await foodCollection.readRecord(foodId);
   res.status(200).json(foodName);
 }
 
 async function addFood(req, res) {
   let newFood = req.body;
-  let food = await foodCollection.create(newFood);
+  let food = await foodCollection.createRecord(newFood);
   res.status(201).json(food);
 }
 
 async function updateFood(req, res) {
   let foodId = parseInt(req.params.id);
   let updateFood = req.body;
-  let foundFood = await foodCollection.findOne({ where: { id: foodId } });
+  let foundFood = await foodCollection.readRecord(foodId);
   if (foundFood) {
     let updatedFood = await foundFood.update(updateFood);
     res.status(201).json(updatedFood);
@@ -41,7 +41,7 @@ async function updateFood(req, res) {
 
 async function deleteFood(req, res) {
   let foodId = parseInt(req.params.id);
-  let deleteFood = await foodCollection.destroy({ where: { id: foodId } });
+  let deleteFood = await foodCollection.deleteRecord(foodId);
   res.status(204).json(deleteFood);
 }
 

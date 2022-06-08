@@ -6,9 +6,6 @@ const Clothes = (sequelize, DataTypes) =>
       type: DataTypes.STRING,
       allowNull: false,
     },
-    ClothesType: {
-      type: DataTypes.STRING,
-    },
     ClothesPrice: {
       type: DataTypes.STRING,
     },
