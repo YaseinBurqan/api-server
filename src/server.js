@@ -18,6 +18,7 @@ const userRoutes = require("./routes/users");
 app.get("/", (req, res) => {
   res.status(200).send("server is working");
 });
+
 app.use(userRoutes);
 app.use(foodRoutes);
 app.use(clothesRoutes);
