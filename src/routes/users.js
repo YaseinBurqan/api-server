@@ -17,7 +17,7 @@ async function getUsers(req, res) {
 
 async function getOneUsers(req, res) {
   let userId = parseInt(req.params.id);
-  let userName = await userCollection.findOne({ where: { id: userId } });
+  let userName = await userCollection.readRecord(userId);
   res.status(200).json(userName);
 }
 
@@ -29,13 +29,13 @@ async function addUser(req, res) {
 
 async function updateUser(req, res) {
   let userId = parseInt(req.params.id);
-  let updateUser = req.body;
-  let foundUser = await userCollection.updateRecord({ where: { id: userId } });
+  let updateUsers = req.body;
+  let foundUser = await userCollection.readRecord(userId);
   if (foundUser) {
-    let updatedUser = await foundUser.update(updateUser);
+    let updatedUser = await foundUser.update(updateUsers);
     res.status(201).json(updatedUser);
   } else {
-    res.status(404).json({ message: "User not found" });
+    res.status(404).json({ message: "Clothes not found" });
   }
 }
 
