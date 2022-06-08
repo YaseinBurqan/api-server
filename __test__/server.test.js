@@ -133,8 +133,14 @@ describe("Web server", () => {
     expect(Array.isArray(response.body)).toBeTruthy();
   });
 
-  test("Update a record using PUT", async () => {
+  // test("Update a record using PUT", async () => {
+  //   const response = await mockRequest.put("/user/1");
+  //   expect(response.status).toBeTruthy(201);
+  //   expect(typeof response.body).toEqual("object");
+  // });
+  test("update a record", async () => {
     const response = await mockRequest.put("/user/1");
+    // expect(response.status).toBe(201);
     expect(typeof response.body).toEqual("object");
   });
 
