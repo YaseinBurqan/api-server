@@ -11,21 +11,22 @@ userRouter.put("/user/:id", updateUser);
 userRouter.delete("/user/:id", deleteUser);
 
 async function getUsers(req, res) {
-  let user = await userCollection.readRecord();
-  res.status(200).json(user);
+  const allUsers = await userCollection.readRecord();
+  res.status(200).json(allUsers);
 }
 
 async function getOneUsers(req, res) {
   let userId = parseInt(req.params.id);
-  let userName = await User.findOne({ where: { id: userId } });
+  let userName = await userCollection.findOne({ where: { id: userId } });
   res.status(200).json(userName);
 }
 
 async function addUser(req, res) {
-  let newUser = req.body;
-  let user = await userCollection.createRecord(newUser);
+  let newFood = req.body;
+  let user = await userCollection.createRecord(newFood);
   res.status(201).json(user);
 }
+
 async function updateUser(req, res) {
   let userId = parseInt(req.params.id);
   let updateUser = req.body;
